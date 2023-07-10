@@ -34,7 +34,23 @@ class _NewExpenseState extends State<NewExpense> {
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
     if (_titleController.text.trim().isEmpty ||
         amountIsInvalid ||
-        _selectedDate == null) {}
+        _selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text("Invalid Input"),
+          content: const Text('Please Make Sure Enter Valid Values'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Okay'),
+            )
+          ],
+        ),
+      );
+    }
   }
 
   @override
